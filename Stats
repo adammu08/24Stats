@@ -1,0 +1,72 @@
+
+# Declares the List
+statsList = []
+
+# Function for the Menu Options
+def menu():
+    user = int(input("(1)Add Value, \n(2)Delete Value (Value), \n(3)Delete Value (Index), \n(4)Display List, \n(5)Compute Mean, \n(6)Compute Median, \n(7)Compute MidPoint"))
+    match user:
+        case 1:
+            addValue()
+        case 2:
+            deleteValueFloat()
+        case 3:
+            deleteValueIndex()
+        case 4:
+            displayList()
+        case 5:
+            computeMean()
+        case 6:
+            computeMedian()
+        case 7:
+            computeMidPoint()
+
+# Function for adding a float value to the StatsList
+def addValue():
+    user = float(input("Type in a Float to add to the List!"))
+    statsList.append(user)
+    menu()
+
+# Function for deleting a value from the list by using the value
+def deleteValueFloat():
+    print(statsList)
+    user = float(input("What value would you like to delete?"))
+    statsList.remove(user)
+    menu()
+
+# Function for deleting a value form the list by using the index
+def deleteValueIndex():
+    print(statsList)
+    user = int(input("What Index would you like to delete?"))
+    del statsList[user]
+    menu()
+
+# Displays the List
+def displayList():
+    print(statsList)
+    menu()
+
+# Gets the Average of the List
+def computeMean():
+    avg = sum(statsList) / len(statsList)
+    print(avg)
+    menu()
+
+# Gets the Median of the List
+def computeMedian():
+    statLen = len(statsList)
+    statsList.sort()
+    if statLen % 2 == 1:
+        print(statsList[statLen // 2])
+    else:
+        print(statsList[statLen // 2] + statsList[statLen // 2 - 1])
+
+# Gets the Middle of the List
+def computeMidPoint():
+    statLen = len(statsList)
+    if statLen % 2 == 1:
+        print(statsList[statLen // 2])
+    else:
+        print(statsList[statLen // 2] + statsList[statLen // 2 - 1])
+    menu()
+menu()
