@@ -1,104 +1,106 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      teiga
-#
-# Created:     07/10/2024
-# Copyright:   (c) teiga 2024
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
 
-#Initializes five test values in the list and the initial menu value
-values = [1, 2, 3, 3, 4, 5]
-menu = 11
+import statistics
+selections = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
 
-#Prints off user options
-print("1. Add Values", "2. Delete values by number", "3. Delete values by position in list", "4. Display Values", "\n")
-print("5. Compute Mean", "6. Compute Median", "7. Compute Midpoint", "8. Compute Mode(s)", "9. Compute Standard Deviation", "0. Exit", "\n")
+def menu():
+    user = 0
+    while user != 10:
+        printMenu()
+        user = int(input("type in the number of your choice "))
+        if user == 1:
+            menuItemOne()
+        if user == 2:
+            menuItemTwo()
+        if user == 3:
+            menuItemThree()
+        if user == 4:
+            menuItemFour()
+        if user == 5:
+            menuItemFive()
+        if user == 6:
+            menuItemSix()
+        if user == 7:
+            menuItemSeven()
+        if user == 8:
+            menuItem8()
+        if user == 9:
+            menuItem9()
+            print("yes")
+        if user == 10:
+            print("thank you for using the menu")
 
-#Adds values to the list
-def addValues():
-    values.append(float(input("Add a number to the list")))
+def printMenu():
+    print("1. Item 1 ")
+    print("2. Item 2 ")
+    print("3. Item 3 ")
+    print("4. Item 4 ")
+    print("5. Item 5 ")
+    print("6. Item 6 ")
+    print("7. Item 7 ")
+    print("8. Item 8 ")
+    print("9. Item 9 ")
+    print("10. exit")
 
-#Deletes specific values from the list based on a specific number
-def delValuesByValue():
-    delNum = float(input("What number do you want deleted from the list?"))
-    values.remove(delNum)
+def menuItemOne():
+    print("This is Menu Item 1")
+    userin = int(input("give me an number "))
+    selections.append(userin)
+    print(selections)
+def menuItemTwo():
+    print("This is Menu Item 2")
+    print(selections)
+    userin2 = int(input("what do you want to remove "))
+    selections.remove(userin2)
+    print(selections)
 
-#Delete a value based on its position in the list
-def delValueByPos():
-    delPos = float(input("What is the position of the value you want to delete in the list"))
-    values.remove(values[delPos])
+def menuItemThree():
+    print("This is Menu Item 3")
+    print(selections)
+    userin3 = int(input("what do you want to remove "))
+    selections.pop(userin3)
+    print(selections)
+def menuItemFour():
+    print("This is Menu Item 4")
+    print(selections)
+def menuItemFive():
+    print("This is Menu Item 5")
+    print(selections)
+    print(statistics.mean(selections))
+def menuItemSix():
+    print("This is Menu Item 6")
+    statistics.median(selections)
+    statistics.median(map(float, selections))
+    from decimal import Decimal
+    statistics.median(map(Decimal, selections))
+    print(selections)
+def menuItemSeven():
+# find some way to make selections have a mid point by the length
+    midpoint= int(len(selections)/2)
+    for val in selections[:midpoint]:
+        print(val)
+    print("This is Menu Item 7")
+    if selections == 3:
+        mid = 3+4
+        mid/2
+        print(mid)
 
-#Displays all current values in the list
-def displayMenu():
-    for x in range(0, len(values)):
-        print(values[x])
-    print("Length of List:",len(values))
+def menuItem8():
+    print("yes8")
+def menuItem9():
+    print("yes9")
 
-def computeMean():
-    sigma = 0
-    for x in range(0, len(values)):
-        sigma += values[x]
-    mean = sigma/len(values)
-    return mean
+def main():
+    menu()
 
-def computeMedian():
-    values.sort()
-    if len(values) % 2 == 1:
-        medInd = int((len(values))/2)
-        median = values[medInd]
-        print("Median:", median)
-    elif len(values) % 2 == 0:
-        medInd1 = int(((len(values))/2)-.5)
-        medInd2 = int(((len(values))/2)+.5)
-        median = ((values[medInd1]+values[medInd2])/2)
-        print("Median:", median)
-
-
-def computeMidpoint():
-    midPoint = (len(values)-1)/2
-    print("The midpoint of the list is:", midPoint)
-
-def computeMode():
-    highRec = 0
-    modeIndex = 0
-    for x in range(0,len(values)):
-        recurring = 0
-        for y in range(0, len(values)):
-            if values[x] == values[y]:
-                recurring += 1
-            if recurring > highRec:
-                highRec = recurring
-                modeIndex = x
-    print("Mode:",values[modeIndex],"Times it occurs:",highRec)
-
-
-def computeStandardDeviation():
-    sigma = 0
-    for x in range(0, len(values)):
-        sigma += (values[x]-computeMean())*(values[x]-computeMean())
-    standDev = sigma/(len(values)-1)
-    print("Standard Deviation:",standDev)
-
-while menu != 0:
-    menu = int(input("Pick an option"))
-    if menu == 1:
-        addValues()
-    if menu == 2:
-        delValuesByValue()
-    if menu == 3:
-        delValueByPos()
-    if menu == 4:
-        displayMenu()
-    if menu == 5:
-        print("Mean:",computeMean())
-    if menu == 6:
-        computeMedian()
-    if menu == 7:
-        computeMidpoint()
-    if menu == 8:
-        computeMode()
-    if menu == 9:
-        computeStandardDeviation()
+if __name__ == '__main__':
+    main()
